@@ -1,0 +1,1 @@
+(length == width) || (length == height) || (width == height)
