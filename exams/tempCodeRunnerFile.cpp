@@ -1,1 +1,2 @@
-(length == width) || (length == height) || (width == height)
+test:
+  std::cout << "So you entered 4, huh?";
