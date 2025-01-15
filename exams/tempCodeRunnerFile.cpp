@@ -1,2 +1,8 @@
-test:
-  std::cout << "So you entered 4, huh?";
+// tempCodeRunnerFile.cpp
+
+#include <iostream>
+
+int main() {
+  // Your code here
+  return 0;
+}
