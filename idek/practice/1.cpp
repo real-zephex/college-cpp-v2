@@ -12,8 +12,8 @@ struct Node
 Node *createNode(int data)
 {
   Node *newNode = new Node(); // Allocate memory for new node
-  newNode->data = data; // Set the data
-  newNode->next = nullptr; // Initialize next to nullptr
+  newNode->data = data;       // Set the data
+  newNode->next = nullptr;    // Initialize next to nullptr
 
   return newNode; // Return the new node
 }
@@ -22,7 +22,7 @@ Node *createNode(int data)
 void insertAtBeginning(Node *&head, int data)
 {
   Node *newNode = createNode(data); // Create a new node
-  newNode->next = head; // Point the new node's next to the current head
+  newNode->next = head;             // Point the new node's next to the current head
 
   head = newNode; // Update the head to the new node
 }
@@ -104,14 +104,14 @@ void deleteByKey(Node *&head, int value)
   if (head->data == value)
   {
     head = head->next; // Move the head to the next node
-    delete temp; // Delete the old head
+    delete temp;       // Delete the old head
     return;
   }
 
   // Traverse the list to find the node to be deleted
   while (temp != nullptr && temp->data != value)
   {
-    prev = temp; // Keep track of the previous node
+    prev = temp;       // Keep track of the previous node
     temp = temp->next; // Move to the next node
   }
 
@@ -121,9 +121,27 @@ void deleteByKey(Node *&head, int value)
 
   // Unlink the node from the list
   prev->next = temp->next;
-
+  std::cout << "Deleted node with the value: " << value << "\n";
   // Delete the node
   delete temp;
+}
+
+Node *searchForNode(Node *head, int data)
+{
+  int count = 0;
+  while (head->data != data)
+  {
+    if (head->next == nullptr)
+    {
+      std::cout << "Sorry but the value was not found in the linked list";
+      return;
+    }
+    count++;
+    head = head->next;
+  }
+
+  std::cout << "Node found at position: " << count << " in the linked list." << "\n";
+  return head;
 }
 
 int main()
@@ -136,6 +154,8 @@ int main()
   insertInBetween(newNode, 39, 10);
   printList(newNode);
   deleteByKey(newNode, 39);
+  Node *findNode = searchForNode(newNode, 12);
+  std::cout << "Data stored in the searched node: " << findNode->data << ". The node to which it points is: " << findNode->next->data << ".\n";
   printList(newNode);
 
   return 0;
