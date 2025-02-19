@@ -69,6 +69,7 @@ int main()
   Node *newNode = createNode(10);
   insertAtBeginning(newNode, 20);
   insertAtEnd(newNode, 30);
+  // deleteNode(newNode, 20);
   printLinkedList(newNode);
 
   return 0;
