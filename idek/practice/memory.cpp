@@ -1,41 +1,62 @@
-#include <cstdlib>
 #include <iostream>
+#include <cstdlib>
 
-int memoryAllocation()
+int useNewDelete()
 {
-  std::cout << "Executing dynamic memory allocation..." << "\n";
-  int *arr = new int[10];
+  std::cout << "Executing dynamic memory allocation...\n";
+  int *ptr = new int[10]; // Declaring an integer array of size 10
 
   for (int i = 0; i < 10; i++)
   {
-    arr[i] = i * i;
+    ptr[i] = i + i;
   }
 
   for (int i = 0; i < 10; i++)
   {
-    std::cout << arr[i] << " ";
+    std::cout << ptr[i] << " ";
+  }
+  std::cout << "\n";
+  delete[] ptr;
+  return 0;
+}
+
+int useMalloc()
+{
+  std::cout << "Executing malloc...\n";
+  int *ptr = (int *)malloc(5 * sizeof(int));
+  // malloc()
+  /*
+    alloactes a block of uninitialized memory to a pointer
+    params:
+      size: size_t
+  */
+  for (int i = 0; i < 5; i++)
+  {
+    ptr[i] = i + i;
+  }
+
+  for (int i = 0; i < 5; i++)
+  {
+    std::cout << ptr[i] << " ";
   }
   std::cout << "\n";
 
-  delete arr;
+  free(ptr);
   return 0;
-};
+}
 
-int call()
+int useCalloc()
 {
-  std::cout << "Executing calloc...";
+  std::cout << "Executing calloc...\n";
 
   int *ptr = (int *)calloc(5, sizeof(int));
-  std::cout << ptr << "\n";
   // calloc()
   /*
     returns a pointer to the first byte of the allocated memory block
-
-    parameters:
-      size: int
+    params:
+      elements: size_t
       size: size_t
   */
-
   for (int i = 0; i < 5; i++)
   {
     ptr[i] = i * i;
@@ -45,30 +66,16 @@ int call()
   {
     std::cout << ptr[i] << " ";
   }
-  std::cout << '\n';
+  std::cout << "\n";
   free(ptr);
-
   return 0;
 }
 
 int main()
 {
-  std::cout << "Executing malloc...";
+  useNewDelete();
+  useMalloc();
+  useCalloc();
 
-  int *ptr = (int *)malloc(sizeof(int));
-  // malloc()
-  /*
-    allocates a block of uninitialized memory to a pointer
-    params:
-      size: size_t
-  */
-  *ptr = 5;
-  std::cout << ptr << "\n";
-  std::cout << *ptr << "\n";
-
-  free(ptr);
-
-  call();
-  memoryAllocation();
   return 0;
 }
