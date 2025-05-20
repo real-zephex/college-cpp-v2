@@ -81,6 +81,17 @@ void printList(Node *head)
   std::cout << "nullptr" << "\n";
 }
 
+int countNodes(Node *head)
+{
+  int count = 0;
+  while (head != nullptr)
+  {
+    head = head->nextPointer;
+    count++;
+  }
+  return count;
+}
+
 int main()
 {
   Node *newNode = createNode(10);
@@ -93,4 +104,8 @@ int main()
   insertAtEnd(newNode, 40);
   deleteNode(newNode, 10);
   printList(newNode);
+
+  int count = countNodes(newNode);
+  std::cout << "Number of nodes: " << count;
+  return 0;
 }
